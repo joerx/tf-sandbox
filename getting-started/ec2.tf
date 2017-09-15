@@ -3,8 +3,10 @@ provider "aws" {
 }
 
 resource "aws_instance" "example" {
+
     ami = "${lookup(var.aws_ami_ids, var.aws_region)}"
     instance_type = "t2.micro"
+    key_name = "yodo2"
 
     provisioner "local-exec" {
         command = "echo ${aws_instance.example.public_ip} > ip_address.txt"
@@ -21,4 +23,8 @@ resource "aws_eip" "eip" {
 
 output "ip" {
     value = "${aws_eip.eip.public_ip}"
+}
+
+output "public_dns" {
+    value = "${aws_instance.example.public_dns}"
 }
