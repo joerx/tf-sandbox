@@ -7,8 +7,12 @@ variable "keypair_name" {
 }
 
 variable "aws_ami_ids" {
-    type = "map"
-    default = {
-        "ap-southeast-1" = "ami-fdb8229e"
-    }
+  type = "map"
+  default = {
+    "ap-southeast-1" = "ami-fdb8229e"
+  }
+}
+
+variable "source_bucket_name" {
+  type = "string"
 }
